@@ -8,7 +8,7 @@
       		<div class="modal-body">
 					<form action="" method="POST">
     				<div class="form-group">
-			        	<table class="table table-condensed table-bordered">
+			        	<table class="table table-condensed table-bordered table-hover">
 						    <thead>
 						      <tr>
 						        <th>Klas</th>
@@ -28,12 +28,12 @@
     			
 				</div>
 				<div class="modal-footer">
-					<button style="float:left" type="button" class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#verwijder<?php echo $klas["klas"] ?>">
+					<button style="float:left" type="button" class="btn btn-danger" data-toggle="modal" data-dismiss="modal" data-target="#verwijder<?php echo $klas["klas"] ?>">
 						Klas Verwijderen
 				</button>
 				<input type="hidden" name="klas_id" value="<?php echo $klas["klas_id"] ?>">
 				<input type="submit" class="btn btn-default" name="submit_bewerk_klas" value="Opslaan">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>		  
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>		  
 	 			</div>
 	 		</form>
 		</div>
@@ -54,7 +54,7 @@
             	<form action="" method="POST">
 						<input style="float: left;" type="submit" class="btn btn-default" name="submit_verwijder_klas" value="Ja">
 						<input type="hidden" name="klas_id" value="<?php echo $klas["klas_id"] ?>">
-                    	<button type="button" class="btn btn-default" data-dismiss="modal">Nee</button>
+                    	<button type="button" class="btn btn-danger" data-dismiss="modal">Nee</button>
             	</form>
             </div>
         </div>

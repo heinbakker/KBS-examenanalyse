@@ -77,38 +77,51 @@ $pagename = "klassen";
 		<div class="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-10">
 						<div class="panel panel-default">
-				<table class="table table-condensed table-bordered">
-				    <thead>
-				      <tr>
-				        <th>Klas</th>
-				        <th>Examenjaar</th>
-				        <th>Docent</th>
-				        <th>Aantal Leerlingen</th>
-				      </tr>
-				    </thead>
-				    <tbody>					    	
-				    	<?php include(ROOT_PATH . "includes/partials/klassenlijst.html.php") ?>
-					</tbody>
-				</table>
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Klassenlijst</h3>
+                            </div>
+                            <div class="panel-body">
+								<table class="table gebruiker-gegevens">
+								    <thead>
+								      <tr>
+								        <th>Klas</th>
+								        <th>Examenjaar</th>
+								        <th>Docent</th>
+								        <th>Aantal Leerlingen</th>
+								      </tr>
+								    </thead>
+								    <tbody>					    	
+								    	<?php include(ROOT_PATH . "includes/partials/klassenlijst.html.php") ?>
+								    	<tr>
+								    		<td style="border: 0;">
+								    			<!-- Button trigger leerling toevoegen modal -->
+												<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#klas-toevoegen">
+												  Klas Toevoegen
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 
-				<!-- Klas bewerken/verwijderen Modal -->
-				<?php
-					foreach ($klassenlijst as $klas) {
-						foreach ($klas as $key => $value) {
-							include(ROOT_PATH . "includes/partials/modals/klas_bewerk_modal.html.php");
-						}
-					}
-				?>
+									<!-- Klas bewerken/verwijderen Modal -->
+									<?php
+										foreach ($klassenlijst as $klas) {
+											foreach ($klas as $key => $value) {
+												include(ROOT_PATH . "includes/partials/modals/klas_bewerk_modal.html.php");
+											}
+										}
+									?>
 
-				<!-- Klas Toevoegen Modal -->
-				<?php					
-					include(ROOT_PATH . "includes/partials/modals/klas_toevoegen_modal.html.php");
-				?>
+									<!-- Klas Toevoegen Modal -->
+									<?php					
+										include(ROOT_PATH . "includes/partials/modals/klas_toevoegen_modal.html.php");
+									?>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
 			</div>
-			</div>
-			</div>	
-		</div>
-	</div>
 <?php include(ROOT_PATH . "includes/templates/footer.php");?>

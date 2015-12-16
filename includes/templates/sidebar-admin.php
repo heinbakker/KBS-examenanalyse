@@ -4,7 +4,7 @@
 			<a class="<?php if ($pagename == "dashboard"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/">Dashboard</a>
 		</li>
 		<li>
-			<a class="<?php if ($pagename == "leerlingen"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/klassenlijst.php">Leerlingen</a>
+			<a class="<?php if ($pagename == "klassen"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/klassenlijst.php">Klassen</a>
 		</li>
 		<li>
 			<a class="<?php if ($pagename == "docenten"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/docent.php">Docenten</a>
@@ -15,7 +15,7 @@
 	</ul>
 	<ul class="sidebar-nav settings-nav list-unstyled">
 		<li>
-			<a href="<?php echo BASE_URL; ?>admin/settings.php">Settings</a>
+			<a class="<?php if ($pagename == "settings"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/settings.php">Settings</a>
 		</li>
 		<li>
 			<a href="<?php echo BASE_URL; ?>includes/logout.php">Uitloggen</a>
