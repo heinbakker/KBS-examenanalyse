@@ -76,38 +76,38 @@ $pagename = "klassen";
 		<?php include(ROOT_PATH . "includes/templates/sidebar-admin.php"); ?>
 		<div class="page-wrapper">
 			<div class="container-fluid">
-				<div class="contentblock">
-					<div class="content">
-						<table class="table table-condensed table-bordered">
-						    <thead>
-						      <tr>
-						        <th>Klas</th>
-						        <th>Examenjaar</th>
-						        <th>Docent</th>
-						        <th>Aantal Leerlingen</th>
-						      </tr>
-						    </thead>
-						    <tbody>					    	
-						    	<?php include(ROOT_PATH . "includes/partials/klassenlijst.html.php") ?>
-							</tbody>
-						</table>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+				<table class="table table-condensed table-bordered">
+				    <thead>
+				      <tr>
+				        <th>Klas</th>
+				        <th>Examenjaar</th>
+				        <th>Docent</th>
+				        <th>Aantal Leerlingen</th>
+				      </tr>
+				    </thead>
+				    <tbody>					    	
+				    	<?php include(ROOT_PATH . "includes/partials/klassenlijst.html.php") ?>
+					</tbody>
+				</table>
 
-						<!-- Klas bewerken/verwijderen Modal -->
-						<?php
-							foreach ($klassenlijst as $klas) {
-								foreach ($klas as $key => $value) {
-									include(ROOT_PATH . "includes/partials/modals/klas_bewerk_modal.html.php");
-								}
-							}
-						?>
+				<!-- Klas bewerken/verwijderen Modal -->
+				<?php
+					foreach ($klassenlijst as $klas) {
+						foreach ($klas as $key => $value) {
+							include(ROOT_PATH . "includes/partials/modals/klas_bewerk_modal.html.php");
+						}
+					}
+				?>
 
-						<!-- Klas Toevoegen Modal -->
-						<?php					
-							include(ROOT_PATH . "includes/partials/modals/klas_toevoegen_modal.html.php");
-						?>
-
-					</div>
-				</div>
+				<!-- Klas Toevoegen Modal -->
+				<?php					
+					include(ROOT_PATH . "includes/partials/modals/klas_toevoegen_modal.html.php");
+				?>
+			</div>
+			</div>
 			</div>	
 		</div>
 	</div>

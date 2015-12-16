@@ -28,7 +28,7 @@
     			
 				</div>
 				<div class="modal-footer">
-					<button style="float:left" type="button" class="btn btn-default" data-toggle="modal" data-target="#verwijder<?php echo $klas["klas"] ?>">
+					<button style="float:left" type="button" class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#verwijder<?php echo $klas["klas"] ?>">
 						Klas Verwijderen
 				</button>
 				<input type="hidden" name="klas_id" value="<?php echo $klas["klas_id"] ?>">
