@@ -88,3 +88,33 @@
 .table-column {
 	max-width: 105px;
 }
+
+.gebruiker-gegevens > tbody > tr > td,
+.gebruiker-gegevens > tbody > tr > th {
+	border: 0px;
+	border-bottom: 1px solid #ddd;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.wijzigwachtwoord {
+	width: 40%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.wijzigwachtwoord > tbody > tr > th,
+.wijzigwachtwoord > tbody > tr > td {
+	border: 0px;
+}
+
+.wijzigwachtwoord > tbody > tr > th {
+	font-size: 1.2em;
+		text-align: center;
+}
+
+.wijzigwachtwoord input {
+	border:2px solid #ccc
+}
+
+

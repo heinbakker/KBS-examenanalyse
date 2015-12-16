@@ -15,7 +15,7 @@
 	</ul>
 	<ul class="sidebar-nav settings-nav list-unstyled">
 		<li>
-			<a href="<?php echo BASE_URL; ?>includes/settings.php">Settings</a>
+			<a href="<?php echo BASE_URL; ?>admin/settings.php">Settings</a>
 		</li>
 		<li>
 			<a href="<?php echo BASE_URL; ?>includes/logout.php">Uitloggen</a>
