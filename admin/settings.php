@@ -23,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+$pagename = "settings";
 ?>
 
 
@@ -30,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
     <body>
         <?php include(ROOT_PATH . "includes/templates/header.php"); ?>
-        <?php include(ROOT_PATH . "includes/templates/sidebar-admin.php"); ?>
         <div class="wrapper">
             <?php include(ROOT_PATH . "includes/templates/sidebar-admin.php"); ?>
             <div class="page-wrapper">
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-sm gebruiker-gegevens">
+                                        <table class="table gebruiker-gegevens">
                                             <tr>
                                                 <th>                  
                                                     Voornaam 
@@ -75,7 +76,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <td>
                                                     <?php echo $emailadres = $user_data['emailadres']; ?>
                                                 </td>
-                                            </tr>  
+                                            </tr>   
+                                            <tr>
+                                                <th>
+                                                    Wachtwoord
+                                                </th>
+                                                <td>
+                                                    <?php echo "• • • • • • • •" ?>
+                                                </td>
+                                            </tr>                                           
                                             <tr>
                                                 <td style="border: 0;">                                                      <!-- Laat de popup zien als je op de knop klikt -->
                                                     <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#wachtwoordwijzigen">Wachtwoord Wijzigen</button>
@@ -111,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </tr>
                                                 <tr class="inputrow">
                                                     <td>
-                                                        <input type="text" class="form-control" name="huidig" id="huidig">
+                                                        <input type="password" class="form-control" name="huidig" id="huidig">
                                                     </td>
                                                 </tr>
                                                 <tr class="inputrow">
@@ -121,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </tr>
                                                 <tr class="inputrow">                                                    
                                                     <td>
-                                                        <input type="text" class="form-control" name="nieuw" id="nieuw">
+                                                        <input type="password" class="form-control" name="nieuw" id="nieuw">
                                                     </td>
                                                 </tr>
                                                 <tr class="inputrow">
@@ -131,14 +140,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </tr>
                                                 <tr class="inputrow">                                                    
                                                     <td>
-                                                        <input type="text" class="form-control" name="nieuwheraal" id="nieuwheraal">
+                                                        <input type="password" class="form-control" name="nieuwheraal" id="nieuwheraal">
                                                     </td>
                                                 </tr>
                                             </table>
                                     </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="submit" class="btn btn-success" name="wijzigen" value="Opslaan">
+                                        <input type="submit" class="btn btn-default" name="wijzigen" value="Opslaan">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
                                     </div>
                                 </form>
@@ -150,5 +159,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
         </div>
-    </body>
-</html>
+<?php include(ROOT_PATH . "includes/templates/footer.php");?>

@@ -11,7 +11,7 @@ foreach($leerlingen as $leerling) {
 	}
 	echo 
 		'<td>
-			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#' . $leerling["leerling_id"] . '">
+			<button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#' . $leerling["leerling_id"] . '">
 				Bewerken
 			</button>
 		</td>

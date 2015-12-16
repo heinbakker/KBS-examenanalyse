@@ -1,7 +1,4 @@
-	<!-- Button trigger leerling toevoegen modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#klas-toevoegen">
-  Klas Toevoegen
-</button>
+ 
 
 <!-- Leerling toevoegen Modal -->
 <div class="modal fade" id="klas-toevoegen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -14,7 +11,7 @@
       		<div class="modal-body">
         		<form action="" method="POST">
 		        	<div class="form-group leerling">
-			        	<table class="table table-condensed table-bordered">
+			        	<table class="table table-condensed table-bordered table-hover">
 						    <thead>
 						    	<tr>
 							        <th>Klas</th>
@@ -33,10 +30,10 @@
 					</div>							        
       		</div>
       		<div class="modal-footer">
-      			<input type ="button" class="btn btn-default" id="delete_klas" onclick="deleteleerlingRow()" value="Rij verwijderen"/>
+      			<input type ="button" class="btn btn-danger" id="delete_klas" onclick="deleteleerlingRow()" value="Rij verwijderen"/>
       			<input type ="button" class="btn btn-default" id="add_klas" onclick="insertLeerlingRow()" value="Rij toevoegen"/>
 				<input type="submit" class="btn btn-default" name="submit_add_klas" value="Opslaan en verzenden">
-        		<button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>						      
+        		<button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>						      
       		</div>
       		</form>
     	</div>

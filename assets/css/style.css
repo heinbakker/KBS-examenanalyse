@@ -89,10 +89,17 @@
 	max-width: 105px;
 }
 
+thead {
+	border-bottom: 2px solid #ddd;
+	font-size: 18px;
+}
+
+
+
 .gebruiker-gegevens > tbody > tr > td,
 .gebruiker-gegevens > tbody > tr > th {
 	border: 0px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #edeff0;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -117,4 +124,19 @@
 	border:2px solid #ccc
 }
 
+.wijzigwachtwoord input[type="password"] {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.panel {
+	font-size: 16px;
+	color: #555;
+}
+
+.panel-title {
+	font-size: 22px;
+	font-weight: bold;
+	color: #222;
+}
 
