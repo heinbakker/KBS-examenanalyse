@@ -378,8 +378,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                                 Niveau:
                                                 <select name="niveau">
-                                                    <option  value="Havo">Havo</option>
-                                                    <option  value="Vwo">Vwo</option>
+                                                    <option  value="havo">havo</option>
+                                                    <option  value="vwo">vwo</option>
+													<option  value="vmbo tl">vmbo tl</option>
+													<option  value="vmbo kl">vmbo kl</option>
                                                 </select>
                                                 <br><br>
                                                 nTerm:

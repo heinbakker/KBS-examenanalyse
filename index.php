@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Examen Analyse</title>
+		<title>Examenanalyse</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="theme-color" content="#1BBC9B">
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<div class="container loginmargin">
 			<div class="row loginmargin">
 				<div class="col-sm-6 col-sm-offset-3 loginblock">
-					<h1><center><b>Examen Analyse</b></center></h1>
+					<h1><center><b>Examenanalyse</b></center></h1>
 					<form method="post" action="">
 						<input type="text" class="form-control login-form" name="user" placeholder="<?php if(isset($_POST['user'])) { echo $_POST['user']; }else{echo"Gebruikersnaam";}?>"/>
 						<input type="password" class="form-control login-form" name="password" placeholder="Wachtwoord"/>

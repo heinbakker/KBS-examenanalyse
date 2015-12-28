@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="modal fade" id="<?php echo $leraargegeven['gebruiker_id']; ?>" role="dialog">
                                         <div class="modal-dialog">a
 
-                                            <!-- Examen bewerken/weergeven-->
+                                            <!-- Docent bewerken/weergeven-->
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -249,7 +249,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div id="verwijder<?php echo $leraargegeven['gebruiker_id']; ?>" class="modal fade" role="dialog">
                                         <div class="modal-dialog">
 
-                                            <!-- Examen verwijderen-->
+                                            <!-- DOCENT verwijderen-->
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -276,11 +276,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Voeg een examen toe</h4>
+                                                <h4 class="modal-title">Voeg een docent toe</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div id="POItablediv">
-                                                    <form id="examentoevoegen" method="post" action="">
+                                                    <form id="addteacher" method="post" action="">
                                                         <table class="table">
                                                             <tr><td>Voornaam</td> <td><input type="text" name="voornaam"></td></tr>
                                                             <tr><td>Tussenvoegsel</td> <td><input type="text" name="tussenvoegsel"></td></tr>
@@ -294,7 +294,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                             </div>
                                             <div class="modal-footer">
-                                                <input form="examentoevoegen" type="submit" class="btn btn-default" name="submit_docent" value="Opslaan en verzenden">
+                                                <input form="addteacher" type="submit" class="btn btn-default" name="submit_docent" value="Opslaan en verzenden">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
                                             </div>
                                         </div>

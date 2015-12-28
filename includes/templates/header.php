@@ -8,7 +8,7 @@ $gebruikersnaam = $data['voornaam']." ".$data['tussenvoegsel']." ".$data['achter
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Examen Analyse</title>
+		<title>Examenanalyse</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="theme-color" content="#1BBC9B">
@@ -24,7 +24,7 @@ $gebruikersnaam = $data['voornaam']." ".$data['tussenvoegsel']." ".$data['achter
 			<div class="row">
 				<div class="col-lg-8 col-md-7 col-sm-6 header">
 					<img src="../images/dashboard/logo.png" alt="logo">
-					<h3><b>Examen Analyse</b></h3>
+					<h3><b>Examenanalyse</b></h3>
 				</div>
 				<div class="col-lg-4 col-md-5 col-sm-6 header usermenu">
 					<img src="../images/dashboard/maleicon.png" alt="usericon">
