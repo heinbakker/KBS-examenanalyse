@@ -1,7 +1,7 @@
 <?php
 require_once('/../config/config.php');
 require_once(ROOT_PATH . "includes/init.php");
-$pagename = "dashboard";
+$pagename = "examenresultatentoevoegen";
 session_start();
 
 if (!isset($_SESSION['gebruiker_id'])) {

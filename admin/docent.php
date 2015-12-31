@@ -2,7 +2,7 @@
 // de admin pagina, dit wordt natuurlijk nog uitgebreid.
 require_once("/../includes/init.php");
 
-$pagename = "Docent";
+$pagename = "docenten";
 checkSession();
 checkIfAdmin();
 

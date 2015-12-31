@@ -12,6 +12,9 @@
 		<li>
 			<a class="<?php if ($pagename == "examens"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/examen.php">Examens</a>
 		</li>
+		<li>
+			<a class="<?php if ($pagename == "resultaten"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/resultaten.php">Resultaten</a>
+		</li>
 	</ul>
 	<ul class="sidebar-nav settings-nav list-unstyled">
 		<li>
