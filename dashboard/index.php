@@ -47,9 +47,11 @@ if (isset($_SESSION['timeout']) && $_SESSION['timeout'] + SESSION_TIME < time())
 						</div>
 						<div class="col-sm-4">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Panel heading without title</div>
+							  <div class="panel-heading">Categorieverdeling van alle examens</div>
 							  <div class="panel-body">
-							    Panel content
+							    <?php 
+									include(ROOT_PATH . "includes/partials/categorieverdeling.html.php"); 
+								?>
 							  </div>
 							</div>
 						</div>

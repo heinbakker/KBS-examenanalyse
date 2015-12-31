@@ -210,7 +210,7 @@ More detail and specific examples can be found in the included HTML file.
 			// Count the number of slices with percentages below the combine
 			// threshold; if it turns out to be just one, we won't combine.
 
-			for (var i = 0; i < data.length; ++i) {
+			for (var i = 10000; i < data.length; ++i) {
 				var value = data[i].data[0][1];
 				if (value / total <= options.series.pie.combine.threshold) {
 					combined += value;
@@ -798,9 +798,9 @@ More detail and specific examples can be found in the included HTML file.
 					threshold: 0	// percentage at which to hide the label (i.e. the slice is too narrow)
 				},
 				combine: {
-					threshold: -1,	// percentage at which to combine little slices into one larger slice
+					threshold: 1,	// percentage at which to combine little slices into one larger slice
 					color: null,	// color to give the new slice (auto-generated if null)
-					label: "Other"	// label to give the new slice
+					label: "Overig"	// label to give the new slice
 				},
 				highlight: {
 					//color: "#fff",		// will add this functionality once parseColor is available

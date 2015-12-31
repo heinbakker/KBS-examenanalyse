@@ -2,7 +2,8 @@
 
 //model wil zeggen: alles wat betrekking heeft tot bepaalde informatie ophalen uit de database en wat de verbanden zijn tussen die gegevens.
 // Hier komen dus alle functies te staan die die informatie ophalen uit de database of juist wat in de database zetten/updaten.
-//Hieronder een voorbeeldje:
+
+
 // checken of examen bestaat
 function checkIfExamExists($examenvak, $examenjaar, $tijdvak) {
     require(ROOT_PATH . "includes/database_connect.php");
@@ -204,6 +205,19 @@ function selectExamQuestions($examen_id) {
     try {
         $match = $db->prepare("SELECT EV.examenvraag, EV.maxscore, C.categorieomschrijving FROM examenvraag EV JOIN categorie C ON C.categorie_id = EV.categorie_id WHERE examen_id = ?");
         $match->bindParam(1, $examen_id);
+        $match->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
+        exit;
+    }
+    $match = $match->fetchAll();
+    return $match;
+}
+
+function getAllExamquestionCategories() {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $match = $db->prepare("SELECT categorie_id, count(categorie_id) FROM examenvraag GROUP BY categorie_id");
         $match->execute();
     } catch (Exception $e) {
         $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
