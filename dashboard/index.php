@@ -2,23 +2,7 @@
 require_once('/../config/config.php');
 require_once(ROOT_PATH . "includes/init.php");
 $pagename = "dashboard";
-session_start();
-
-if (!isset($_SESSION['gebruiker_id'])) {
-	$_SESSION['message'] = 'Je bent niet ingelogd.';
-	header('Location: ' . BASE_URL);
-}
-
-if (isset($_SESSION['timeout']) && $_SESSION['timeout'] + SESSION_TIME < time()) {
-	// sessie destroyen als sessie verlopen is.
-	session_destroy();
-	session_start();
-	$_SESSION['message'] = 'Sessie is verlopen.';
-	header('Location: ' . BASE_URL);
-} else {
-	//als sessie niet verlopen is sessie verlengen
-	$_SESSION['timeout'] = time();
-}
+checkSession();
 ?>
 <!DOCTYPE html>
 <html>

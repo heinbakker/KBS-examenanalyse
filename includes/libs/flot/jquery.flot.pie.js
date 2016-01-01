@@ -325,7 +325,7 @@ More detail and specific examples can be found in the included HTML file.
 
 			if (attempts >= REDRAW_ATTEMPTS) {
 				clear();
-				target.prepend("<div class='error'>Could not draw pie with labels contained inside canvas</div>");
+				target.prepend("<p class='text-danger'><span>Het figuur kan niet worden getekend op een te kleine oppervlakte.</span></p>");
 			}
 
 			if (plot.setSeries && plot.insertLegend) {

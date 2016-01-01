@@ -5,6 +5,8 @@ checkSession();
 
 $user_data = getUserData($_SESSION['gebruiker_id']);
 
+
+//voor wachtwoord weizigen
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //checken als er gegevens ingevoerd zijn
     if (isset($_POST['wijzigen'])) {

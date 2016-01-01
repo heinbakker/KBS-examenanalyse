@@ -13,6 +13,7 @@
 		<script language="javascript" type="text/javascript" src="<?php echo BASE_URL; ?>includes/libs/flot/jquery.flot.js"></script>
 		<script language="javascript" type="text/javascript" src="<?php echo BASE_URL; ?>includes/libs/flot/jquery.flot.pie.js"></script>
 		<script language="javascript" type="text/javascript" src="<?php echo BASE_URL; ?>includes/libs/flot/jquery.flot.categories.js"></script>
+		<script language="javascript" src="<?php echo BASE_URL; ?>includes/libs/flot/jquery.flot.tickrotor.js" type="text/javascript"></script>
 		</div>
 	</body>
 </html>
