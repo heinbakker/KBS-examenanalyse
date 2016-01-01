@@ -3,6 +3,7 @@ require_once("/../includes/init.php");
 
 checkSession();
 
+
 $user_data = getUserData($_SESSION['gebruiker_id']);
 
 

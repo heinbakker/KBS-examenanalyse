@@ -3,6 +3,7 @@ require_once('/../config/config.php');
 require_once(ROOT_PATH . "includes/init.php");
 $pagename = "examenresultatentoevoegen";
 checkSession();
+checkIfAdminIsLoggedOn();
 ?>
 <!DOCTYPE html>
 <html>

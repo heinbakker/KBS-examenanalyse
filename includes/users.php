@@ -67,3 +67,9 @@ function checkIfAdmin() {
     }
 }
 
+function checkIfAdminIsLoggedOn() {
+    if(checkRole($_SESSION['gebruiker_id']) == 3) {
+        header('Location: '  . BASE_URL . 'admin');
+        exit;
+    }
+}

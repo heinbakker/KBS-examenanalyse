@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="content">
                             <h1>Alle exames</h1>
                             <p>Dit is een pagina met alle examens. Er is hier de mogelijkheid om examens te bewerken, verwijderen en toe te voegen.</p>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#examentoevoegen">Examen toevoegen</button>
+                            <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#examentoevoegen">Examen toevoegen</button>
                             <br><br>
                             <?php
                             $t = 0;
@@ -218,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <td><?php echo $examengegeven['tijdvak']; ?></td>
                                             <td><?php echo $examengegeven['nterm']; ?></td>
                                             <td><?php echo $examengegeven['niveau']; ?></td>
-                                            <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#<?php echo $examengegeven['examen_id']; ?>">Bewerken</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#<?php echo $examengegeven['examen_id']; ?>">Bewerken</button></td>
                                         </tr>
                                         <?php
                                         if ($t == $x) {
@@ -314,9 +314,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <div class="modal-footer">
                                                 <button form="form<?php echo $examengegeven['examen_id']; ?>" type="submit" class="btn btn-default" >Opslaan</button>
                                                 <input type="button" class="btn btn-default" id="addmorePOIbutton" value="Voeg rij toe" onclick="insRow(<?php echo $examengegeven['examen_id'] ?>)"/>
-                                                <input type="button" class="btn btn-default" id="delPOIbutton" value="Verwijder rij" onclick="deleteRow(<?php echo $examengegeven['examen_id'] ?>)"/>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#verwijder<?php echo $examengegeven['examen_id']; ?>">Verwijder examen</button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                                                <input type="button" class="btn btn-danger" id="delPOIbutton" value="Verwijder rij" onclick="deleteRow(<?php echo $examengegeven['examen_id'] ?>)"/>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#verwijder<?php echo $examengegeven['examen_id']; ?>">Verwijder examen</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
                                             </div>
                                         </div>
                                     </div>
@@ -334,7 +334,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <p>Weet u het zeker?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="?verwijderexamen=<?php echo $examengegeven['examen_id'] ?>"><button style="float:left;" type="submit" class="btn btn-default">Ja</button></a>
+                                                <a href="?verwijderexamen=<?php echo $examengegeven['examen_id'] ?>"><button style="float:left;" type="submit" class="btn btn-danger">Ja</button></a>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Nee</button>
                                             </div>
                                         </div>
@@ -433,8 +433,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="modal-footer">
                                     <input form="docenttoevoegen" type="submit" class="btn btn-default" name="submit_examen" value="Opslaan en verzenden">
                                     <input  type="button" class="btn btn-default" id="addmorePOIbutton" value="Voeg rij toe" onclick="insRow('')"/>
-                                    <input type="button" class="btn btn-default" id="delPOIbutton" value="Verwijder rij" onclick="deleteRow('')"/>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                                    <input type="button" class="btn btn-danger" id="delPOIbutton" value="Verwijder rij" onclick="deleteRow('')"/>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
                                 </div>
                             </div>
 

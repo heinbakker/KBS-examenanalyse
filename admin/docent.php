@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     echo"Het lijkt er op dat er nog geen docenten bestaan, klik op \"Docent toevoegen\" om een docent toe te voegen<br>";
                                 }
                                 ?>
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#docenttoevoegen">Docent toevoegen</button>
+                                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#docenttoevoegen">Docent toevoegen</button>
                                 <?php
                                 $t = 0;
                                 $x = count($leraargegevens);
@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <td><?php echo $leraargegeven['achternaam']; ?></td>
                                                 <td><?php echo $leraargegeven['docent_afk']; ?></td>
                                                 <td><?php echo $leraargegeven['emailadres']; ?></td>
-                                                <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#<?php echo $leraargegeven['gebruiker_id'];
+                                                <td><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#<?php echo $leraargegeven['gebruiker_id'];
                                                     ?>">Bewerken</button></td>
                                             </tr>
                                             <?php
@@ -240,8 +240,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button form="form<?php echo $leraargegeven['gebruiker_id']; ?>" type="submit" class="btn btn-default" >Opslaan</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#verwijder<?php echo $leraargegeven['gebruiker_id']; ?>">Verwijder docent</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#verwijder<?php echo $leraargegeven['gebruiker_id']; ?>">Verwijder docent</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -259,7 +259,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <p>Weet u het zeker?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="?verwijderdocent=<?php echo $leraargegeven['gebruiker_id'] ?>"><button style="float:left;" type="submit" class="btn btn-default">Ja</button></a>
+                                                    <a href="?verwijderdocent=<?php echo $leraargegeven['gebruiker_id'] ?>"><button style="float:left;" type="submit" class="btn btn-danger">Ja</button></a>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Nee</button>
                                                 </div>
                                             </div>
