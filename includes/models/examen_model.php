@@ -226,3 +226,36 @@ function getAllExamquestionCategories() {
     $match = $match->fetchAll();
     return $match;
 }
+
+function getAllExamResultsWithNterm($gebruiker_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $match = $db->prepare("
+		SELECT 
+			E.examenvak,
+			E.examenjaar,
+			E.tijdvak,
+			E.nterm,
+			R.examen_score,
+			SUM(EV.maxscore) AS maxscore
+		FROM
+			resultaat R
+				JOIN
+			examen E ON E.examen_id = R.examen_id
+				JOIN
+			examenvraag EV ON EV.examen_id = R.examen_id
+		WHERE
+			R.gebruiker_id = ?
+		GROUP BY EV.examen_id
+		ORDER BY R.timestamp
+		"); 
+		$match->bindParam(1, $gebruiker_id);
+        $match->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
+        exit;
+    }
+    $match = $match->fetchAll();
+    return $match;
+}
+

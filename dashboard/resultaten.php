@@ -51,19 +51,23 @@ if (isset($_SESSION['timeout']) && $_SESSION['timeout'] + SESSION_TIME < time())
 							  </div>
 							</div>
 						</div>
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+							  <div class="panel-heading">Voortgang weergegeven in een cijfer van de gemaakte examens.</div>
+							  <div class="panel-body">
+							    <?php 
+									include(ROOT_PATH . "includes/partials/cijfersgemaakteexamens.html.php"); 
+								?>
+							  </div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<?php include(ROOT_PATH . "includes/templates/footer.php");?>
 	</body>
-	<link href="../includes/libs/flot/examples/examples.css" rel="stylesheet" type="text/css">
-	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
-	<script language="javascript" type="text/javascript" src="../includes/libs/flot/jquery.js"></script>
-	<script language="javascript" type="text/javascript" src="../includes/libs/flot/jquery.flot.js"></script>
-	<script language="javascript" type="text/javascript" src="../includes/libs/flot/jquery.flot.pie.js"></script>
 	<script type="text/javascript">
-
 	$(function() {
 
 		// Example Data
