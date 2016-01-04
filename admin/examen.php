@@ -186,8 +186,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="container-fluid">
                     <div class="contentblock">
                         <div class="content">
-                            <h1>Alle exames</h1>
-                            <p>Dit is een pagina met alle examens. Er is hier de mogelijkheid om examens te bewerken, verwijderen en toe te voegen.</p>
+						<div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Welkom op de examenpagina!</h3>
+                                </div>
+                                <div class="panel-body">
+                                    Dit is een pagina met alle examens. Er is hier de mogelijkheid om examens te bewerken, verwijderen en toe te voegen.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                            
                             <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#examentoevoegen">Examen toevoegen</button>
                             <br><br>
                             <?php
@@ -437,7 +448,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
                                 </div>
                             </div>
-
+</div></div>
                         </div>
                     </div>
                 </div>

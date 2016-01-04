@@ -33,6 +33,17 @@ checkIfAdminIsLoggedOn();
 							  </div>
 							</div>
 						</div>
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+							  <div class="panel-heading">Je ziet hier per examen per categorie de voortgang. Het examen helemaal links heb je als eerste ingevoerd.</div>
+							  <div class="panel-body">
+								
+							    <?php 
+									include(ROOT_PATH . "includes/partials/voortgangperexamenpercategorie.html.php"); 
+								?>
+							  </div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

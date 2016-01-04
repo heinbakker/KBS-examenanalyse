@@ -258,4 +258,3 @@ function getAllExamResultsWithNterm($gebruiker_id) {
     $match = $match->fetchAll();
     return $match;
 }
-

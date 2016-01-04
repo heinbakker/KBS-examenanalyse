@@ -30,8 +30,7 @@ $(function(aantalexamens) {
 		xaxis: {
 			mode: "categories",
 			tickLength: 2,
-			autoscaleMargin: 0.05,
-			rotateTicks: 135
+			autoscaleMargin: 0.05
 			
 		
 		},
@@ -59,13 +58,11 @@ $(function(aantalexamens) {
 
 
 </style>
-<div id="content">
 
-		<div class="examencijferresultaten-container">
-			<div id="examencijferresultaten" class="examencijferresultaten-placeholder"></div>
+		<div style="height:200px;" class="examencijferresultaten-container">
+			<div id="examencijferresultaten" style="height:200px;" class="examencijferresultaten-placeholder"></div>
 		</div>
 
-</div>
 
 <?php
 }
