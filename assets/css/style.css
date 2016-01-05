@@ -21,10 +21,20 @@
 	color: #fff;
 }
 /*---HEADER---*/
+.container-header{
+	position: fixed;
+    width: 100%;
+    z-index: 9999;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .header {
 	height: 50px;
 	padding-top: 5px;
 	background-color: #1bbc9b;
+    
 }
 .header img{
 	height: 34px;
@@ -45,13 +55,14 @@
 }
 /*---PAGE-CONTENT---*/
 .wrapper {
-	padding-left: 225px;
+	padding-left: 250px;
+	padding-top: 50px;
 }
 .sidebar-wrapper {
 	position: fixed;
-	width: 225px;
+	width: 250px;
 	height: 100%;
-	margin-left: -225px;
+	margin-left: -250px;
 	background-color: #222;
 }
 .sidebar-nav li {

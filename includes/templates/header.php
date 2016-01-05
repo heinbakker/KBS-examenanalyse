@@ -20,7 +20,7 @@ $gebruikersnaam = $data['voornaam']." ".$data['tussenvoegsel']." ".$data['achter
 	</head>
 	<body>
 		<?php include(ROOT_PATH . "includes/partials/message.html.php"); ?>
-		<div class="container-fluid">
+		<div class="container-header">
 			<div class="row">
 				<div class="col-lg-8 col-md-7 col-sm-6 header">
 					<img src="../images/dashboard/logo.png" alt="logo">

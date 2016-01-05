@@ -337,3 +337,19 @@ function getAllExamQuestionsWithCategorie($j) {
     $match = $match->fetchAll();
     return $match;
 }
+
+function getAllCreatedExamsWithExamId($j) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $match = $db->prepare("SELECT * FROM resultaat WHERE examen_id = ?"); 
+        $match->bindParam(1, $j);
+        $match->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
+        exit;
+    }
+    $match = $match->fetchAll();
+    return $match;
+}
+
+

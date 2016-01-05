@@ -38,6 +38,11 @@ checkIfAdminIsLoggedOn();
                                     if (isset($_GET['examen']) && $_GET['examen'] != "") {
                                         $examen_id = $_GET['examen'];
                                         $data = getExamQuestionResultsFromExamen($_SESSION['gebruiker_id'], $examen_id);
+                                        $check = getAllCreatedExamsWithExamId($examen_id);
+                                        if(empty($check)){
+                                        	header('Location: ' . 'resultaten.php');
+                                        	exit;
+                                        }
                                         ?>
                                         <div class="table-responsive">
                                             <table class="table">
@@ -52,7 +57,7 @@ checkIfAdminIsLoggedOn();
                                                     echo "<th>" . $q . "</th>";
                                                     foreach ($data as $key => $value) {
                                                         if (array_key_exists($q, $value)) {
-                                                            echo "<td style='width:80%'>";
+                                                            echo "<td style='width:85%'>";
 
                                                             if ($value[$q] < 50) {
                                                                 ?>
@@ -62,14 +67,15 @@ checkIfAdminIsLoggedOn();
                                                                     </div>
                                                                 </div>
                                                                 <?php
-                                                            } elseif ($value[$q] > 50 && $value[$q] < 75) {
+                                                            } elseif ($value[$q] >= 50 && $value[$q] <= 75) {
                                                                 ?>
                                                                 <div class="progress">
                                                                     <div class="progress-bar progress-bar-warning  progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $value[$q]; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $value[$q]; ?>%">
                                                                         <?php echo $value[$q] . "% score"; ?>
                                                                     </div>
                                                                 </div>
-                                                                <?php
+
+                                                                <?php 
                                                             } elseif ($value[$q] > 75) {
                                                                 ?>
                                                                 <div class="progress">
@@ -120,10 +126,11 @@ checkIfAdminIsLoggedOn();
                                                     foreach ($categoriedata as $key => $value) {
                                                     	if ($value['categorieomschrijving'] == $k) {
                                                     		$categorie_id = $value['categorie_id'];
+                                                    		$e = $value['catagorieomschrijving_uitgebreid'];
                                                     	}
                                                     }
                                                     $categoriedata = getAllExamQuestionsWithCategorie($categorie_id);
-                                                    echo"Je hebt onder de 75% goed gescoord in de categorie <b>".$k."</b>. De onderstaande vragen vallen onder de zelfde categorie. Probeer deze nog eens te oefenen:";
+                                                    echo"Je hebt onder de 75% goed gescoord in de categorie <b title='".$e."'>".$k."</b>. De onderstaande vragen vallen onder de zelfde categorie. Probeer deze nog eens te oefenen:";
                                                     echo"<ul>";
                                                     foreach ($categoriedata as $key => $value) {
                                                     	echo "<li>".$value['examenvak']." ".$value['examenjaar']." tijdvak ".$value['tijdvak']." vraag ".$value['examenvraag']."</li>";
@@ -140,9 +147,9 @@ checkIfAdminIsLoggedOn();
                                     </div>
                                 </div>
                             </div>
-    <?php
-}
-?>
+						    <?php
+						}
+						?>
                     </div>
                 </div>
             </div> 
