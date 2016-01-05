@@ -319,11 +319,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                             ?>
                                                             </tbody>
                                                         </table>
-                                                    </form>
+                                                   <!--[if !IE]><!--></form><!--<![endif]-->
+												   
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button form="form<?php echo $examengegeven['examen_id']; ?>" type="submit" class="btn btn-default" >Opslaan</button>
+                                                <button form="form<?php echo $examengegeven['examen_id']; ?>" type="submit" class="btn btn-default" >Opslaan</button><!--[if IE]></form><![endif]-->
                                                 <input type="button" class="btn btn-default" id="addmorePOIbutton" value="Voeg rij toe" onclick="insRow(<?php echo $examengegeven['examen_id'] ?>)"/>
                                                 <input type="button" class="btn btn-danger" id="delPOIbutton" value="Verwijder rij" onclick="deleteRow(<?php echo $examengegeven['examen_id'] ?>)"/>
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#verwijder<?php echo $examengegeven['examen_id']; ?>">Verwijder examen</button>

@@ -35,7 +35,7 @@ checkIfAdminIsLoggedOn();
 						</div>
 						<div class="col-sm-12">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Je ziet hier per examen per categorie de voortgang. Het examen helemaal links heb je als eerste ingevoerd.</div>
+							  <div class="panel-heading">Je ziet hier per examen per categorie de voortgang. Het examen helemaal links heb je als eerste ingevoerd. Klik op de buttons voor meer informatie.</div>
 							  <div class="panel-body">
 								
 							    <?php 

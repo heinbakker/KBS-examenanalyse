@@ -258,3 +258,82 @@ function getAllExamResultsWithNterm($gebruiker_id) {
     $match = $match->fetchAll();
     return $match;
 }
+
+function getExamQuestionResults($gebruiker_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $results = $db->prepare(" SELECT E.examenvak, E.examenjaar,E.tijdvak, ROUND(100 * SUM(S.vraag_score) / SUM(EV.maxscore),2), C.categorieomschrijving, E.examen_id
+        FROM categorie C
+        JOIN examenvraag EV ON EV.categorie_id = C.categorie_id
+         JOIN examen E ON EV.examen_id = E.examen_id
+         JOIN resultaat R ON EV.examen_id = R.examen_id
+         JOIN SCORE S ON S.examenvraag_id = EV.examenvraag_id
+
+        WHERE
+            S.gebruiker_id = ?
+        GROUP BY EV.examen_id , EV.categorie_id
+        ORDER BY R.timestamp , EV.categorie_id;
+        ");
+        $results->bindParam(1, $gebruiker_id);
+        $results->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Data could not be retrieved from the database.";
+        exit;
+    }
+    $results = $results->fetchAll();
+    $newResult = [];
+    foreach ($results as $row) {
+        $newResult[$row['examenvak'] . " " . $row['examenjaar'] . " tijdvak " . $row['tijdvak']][$row[4]] = $row[3];
+        $newResult[$row['examenvak'] . " " . $row['examenjaar'] . " tijdvak " . $row['tijdvak']]['examen_id'] = $row[5];
+    }
+    return $newResult;
+}
+
+function getExamQuestionResultsFromExamen($gebruiker_id, $examen_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $results = $db->prepare(" SELECT E.examenvak, E.examenjaar,E.tijdvak, ROUND(100 * SUM(S.vraag_score) / SUM(EV.maxscore),2), C.categorieomschrijving, E.examen_id
+        FROM categorie C
+        JOIN examenvraag EV ON EV.categorie_id = C.categorie_id
+         JOIN examen E ON EV.examen_id = E.examen_id
+         JOIN resultaat R ON EV.examen_id = R.examen_id
+         JOIN SCORE S ON S.examenvraag_id = EV.examenvraag_id
+
+        WHERE
+            S.gebruiker_id = ? 
+        AND E.examen_id = ?
+        GROUP BY EV.examen_id , EV.categorie_id
+        ORDER BY R.timestamp , EV.categorie_id;
+        ");
+        $results->bindParam(1, $gebruiker_id);
+        $results->bindParam(2, $examen_id);
+        $results->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Data could not be retrieved from the database.";
+        exit;
+    }
+    $results = $results->fetchAll();
+    $newResult = [];
+    foreach ($results as $row) {
+        $newResult[$row['examenvak'] . " " . $row['examenjaar'] . " tijdvak " . $row['tijdvak']][$row[4]] = $row[3];
+        $newResult[$row['examenvak'] . " " . $row['examenjaar'] . " tijdvak " . $row['tijdvak']]['examen_id'] = $row[5];
+    }
+    return $newResult;
+}
+
+
+
+function getAllExamQuestionsWithCategorie($j) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $match = $db->prepare("SELECT E.examenvak, E.examenjaar, E.tijdvak, EV.examenvraag FROM examenvraag EV JOIN examen E on E.examen_id = EV.examen_id WHERE categorie_id = ? ORDER BY RAND() LIMIT 5
+"); 
+        $match->bindParam(1, $j);
+        $match->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
+        exit;
+    }
+    $match = $match->fetchAll();
+    return $match;
+}
