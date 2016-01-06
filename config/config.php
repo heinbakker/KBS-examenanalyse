@@ -17,4 +17,4 @@
 	define("DB_PASS","");
 
 	//tijd voordat sessie verloopt
-	define("SESSION_TIME", 10 * 60);	
+	define("SESSION_TIME", 30 * 60);	

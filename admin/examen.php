@@ -242,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             foreach ($examengegevens as $examengegeven) {
                                 ?>
                                 <div class="modal fade" id="<?php echo $examengegeven['examen_id']; ?>" role="dialog">
-                                    <div class="modal-dialog modal-lg">a
+                                    <div class="modal-dialog modal-lg">
 
                                         <!-- Examen bewerken/weergeven-->
                                         <div class="modal-content">

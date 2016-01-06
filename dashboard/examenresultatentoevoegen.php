@@ -60,7 +60,7 @@ if (isset($_POST['examen_id'])) {
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading">Selecteer een examen om je rezultaten in toe voeren of bij te werken.</div>
+                                <div class="panel-heading"><h3 class="panel-title">Selecteer een examen om je resultaten in toe voeren of bij te werken.</h3></div>
                                 <div class="panel-body">
                                     <?php
                                     $niveau = getNiveauFromStudent($_SESSION['gebruiker_id']);
@@ -82,6 +82,7 @@ if (isset($_POST['examen_id'])) {
                                                 </tr>
                                                 <?php
                                                 foreach ($examenlijst as $examengegevens) {
+													echo"<tr>";
                                                     $score = $examengegevens['examen_id'];
                                                     $scorelijst = getExamenvragen($score);
                                                     $punten = getPunten($score);
@@ -97,7 +98,7 @@ if (isset($_POST['examen_id'])) {
                                                         echo "bewerken";
                                                     }
                                                     ?></button></td>
-
+													</tr>
                                                     <?php
                                                 }
                                                 ?>

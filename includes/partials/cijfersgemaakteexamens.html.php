@@ -23,7 +23,9 @@ $(function(aantalexamens) {
 			bars: {
 				show: true,
 				barWidth: 0.3,
-				align: "center"
+				align: "center",
+				lineWidth: 0,
+				fillColor: "rgba(27,188,155, 0.8)"
 			}
 
 		},

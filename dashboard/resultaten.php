@@ -24,7 +24,7 @@ checkIfAdminIsLoggedOn();
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Voortgang weergegeven in een cijfer van de gemaakte examens.</div>
+							  <div class="panel-heading"><h3 class="panel-title">Voortgang weergegeven in een cijfer van de gemaakte examens.</h3></div>
 							  <div class="panel-body">
 								
 							    <?php 
@@ -35,7 +35,7 @@ checkIfAdminIsLoggedOn();
 						</div>
 						<div class="col-sm-12">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Je ziet hier per examen per categorie de voortgang. Het examen helemaal links heb je als eerste ingevoerd. Klik op de buttons voor meer informatie.</div>
+							  <div class="panel-heading"><h3 class="panel-title">Je ziet hier per examen per categorie de voortgang. Het examen helemaal links heb je als eerste ingevoerd. Klik op de buttons voor meer informatie.</h3></div>
 							  <div class="panel-body">
 								
 							    <?php 

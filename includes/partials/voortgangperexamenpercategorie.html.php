@@ -9,29 +9,42 @@ if(empty($examencijferresultaten)){
     <table class="table">
 
         <?php
-        $test = checkCategorie();
+        $categorien = checkCategorie();
         echo"<tr>";
         echo "<th></th>";
         foreach ($data as $key => $value) {
             echo "<th><a href='resultaatvanexamen.php?examen=".$value['examen_id']."'><button type='button' class='btn btn-default btn-md' >" . $key . "</button></a></th>";
         }
         echo"</tr>";
-        foreach ($test as $t) {
+        foreach ($categorien as $t) {
 
             echo"<tr>";
             $q = $t['categorieomschrijving'];
             echo "<th>" . $q . "</th>";
             foreach ($data as $key => $value) {
                 if (array_key_exists($q, $value)) {
-                    echo "<td>";
-                    echo $value[$q] . "%";
-                    echo "</td>";
+					if(isset($voorgaandewaarde)){
+					if($voorgaandewaarde >  $value[$q]){
+						echo "<td class='danger'>";
+						echo $value[$q] . "%";
+						echo "</td>";
+					} else {
+						echo "<td class='success'>";
+						echo $value[$q] . "%";
+						echo "</td>";
+					}
+					}else{
+						echo "<td>";
+						echo $value[$q] . "%";
+						echo "</td>";
+					}
+					$voorgaandewaarde = $value[$q];
                 } else {
                     echo"<td>-</td>";
                 }
             }
 
-
+			unset($voorgaandewaarde);
             echo"</tr>";
         }
         ?>

@@ -24,7 +24,7 @@ checkIfAdminIsLoggedOn();
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Panel heading without title</div>
+							  <div class="panel-heading"><h3 class="panel-title">Panel heading without title</h3></div>
 							  <div class="panel-body">
 							    Panel content
 							  </div>
@@ -32,7 +32,7 @@ checkIfAdminIsLoggedOn();
 						</div>
 						<div class="col-sm-4">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Categorieverdeling van alle examens</div>
+							  <div class="panel-heading"><h3 class="panel-title">Categorieverdeling van alle examens</h3></div>
 							  <div class="panel-body">
 							    <?php 
 									include(ROOT_PATH . "includes/partials/categorieverdeling.html.php"); 
@@ -42,7 +42,7 @@ checkIfAdminIsLoggedOn();
 						</div>
 						<div class="col-sm-4">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Panel heading without title</div>
+							  <div class="panel-heading"><h3 class="panel-title">Panel heading without title</h3></div>
 							  <div class="panel-body">
 							    Panel content
 							  </div>
@@ -50,7 +50,7 @@ checkIfAdminIsLoggedOn();
 						</div>
 						<div class="col-sm-4">
 							<div class="panel panel-default">
-							  <div class="panel-heading">Panel heading without title</div>
+							  <div class="panel-heading"><h3 class="panel-title">Panel heading without title</h3></div>
 							  <div class="panel-body">
 							    Panel content
 							  </div>

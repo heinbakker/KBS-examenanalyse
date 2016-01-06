@@ -24,7 +24,7 @@ checkIfAdminIsLoggedOn();
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading">Resultaat van <?php
+                                <div class="panel-heading"><h3 class="panel-title">Resultaat van <?php
                                     if (isset($_GET['examen']) && $_GET['examen'] != "") {
                                         $examen_id = $_GET['examen'];
                                         $data = getExamQuestionResultsFromExamen($_SESSION['gebruiker_id'], $examen_id);
@@ -32,7 +32,7 @@ checkIfAdminIsLoggedOn();
                                             echo $key;
                                         }
                                     }
-                                    ?></div>
+                                    ?></h3></div>
                                 <div class="panel-body">
                                     <?php
                                     if (isset($_GET['examen']) && $_GET['examen'] != "") {
@@ -112,7 +112,7 @@ checkIfAdminIsLoggedOn();
                             ?>
                             <div class="col-sm-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Deze onderdelen heb je onder de 75% goed gescoord:</div>
+                                    <div class="panel-heading"><h3 class="panel-title">Deze onderdelen heb je onder de 75% goed gescoord:</h3></div>
                                     <div class="panel-body">
                                         <?php
                                         $getal = 1;
