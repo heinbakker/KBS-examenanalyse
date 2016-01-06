@@ -8,23 +8,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     //****************  KLAS TOEVOEGEN ******************//
     if(isset($_POST['submit_add_klas'])) {
-        if (isset($_POST['klas'], $_POST['examenjaar'], $_POST['docent_afk'])) {
+        if (isset($_POST['klas'], $_POST['examenjaar'], $_POST['niveau'], $_POST['docent_afk'])) {
             //checken of er geen lege waarden zijn ingevoerd
 
-            if ($_POST['klas'] == "" OR $_POST['examenjaar'] == "" OR $_POST['docent_afk'] == "") {
+            if ($_POST['klas'] == "" OR $_POST['examenjaar'] == "" OR $_POST['niveau'] == "" OR $_POST['docent_afk'] == "") {
                 $_SESSION['message'] = "Je moet alle gegevens invullen!";
                 			
-            } 
-            else {
+            } else {
             	//binnenkomende array ombouwen
             	unset($_POST['submit_add_klas']);
+            	
             	$gegevens = rebuildArray($_POST);
-
                 //Ingevoerde gegevens door filter halen en trimmen
-            	$gegevens = addKlasFilter($gegevens);
 
-                foreach($gegevens as $klas_gegevens) {		     
-		                addKlas($klas_gegevens);		
+            	$gegevens = addKlasFilter($gegevens);
+                foreach($gegevens as $klas_gegevens) {		
+
+		                addKlas($klas_gegevens);	
+
                 }
             }
         }
@@ -32,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //********** KLAS BEWERKEN **********//
     if(isset($_POST["submit_bewerk_klas"])) {
-		if ($_POST['klas'] == "" OR $_POST['examenjaar'] == "" OR $_POST['docent_afk'] == "") {
+		if ($_POST['klas'] == "" OR $_POST['examenjaar'] == "" OR $_POST['niveau'] == "" OR $_POST['docent_afk'] == "") {
 			$_SESSION['message'] = "Je moet alle gegevens invullen!";
 		} 
 		else {
@@ -40,6 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$gegevens = [ 
 				"klas" => $_POST['klas'],
 				"examenjaar" => $_POST['examenjaar'],
+				"niveau" => $_POST['niveau'],
 				"docent_afk" => $_POST['docent_afk'],
 			];
 			//******** KLAS GEGEVENS FILTEREN *********//
@@ -88,6 +90,7 @@ $pagename = "klassen";
 								      <tr>
 								        <th>Klas</th>
 								        <th>Examenjaar</th>
+								        <th>Niveau</th>
 								        <th>Docent</th>
 								        <th>Aantal Leerlingen</th>
 								      </tr>

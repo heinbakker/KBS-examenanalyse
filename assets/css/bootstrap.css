@@ -5076,7 +5076,7 @@ a.thumbnail.active {
   left: 0;
   right: 0;
   width: 25%;
-  z-index: 1000;
+  z-index: 99999999999999999999999;
   text-align: center;
   border: 1px solid transparent;
   border-radius: 4px

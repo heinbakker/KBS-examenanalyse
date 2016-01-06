@@ -60,18 +60,22 @@ function addKlas($klas) {
             INSERT INTO klas (
                 klas,
                 examenjaar,
+                niveau,
                 docent_afk
             )
-            VALUES(?,?,?) ");
+            VALUES(?,?,?,?) ");
         $stmt->bindParam(1,$klas["klas"]);
         $stmt->bindParam(2,$klas["examenjaar"]);
-        $stmt->bindParam(3,$klas["docent_afk"]);
+        $stmt->bindParam(3,$klas["niveau"]);
+        $stmt->bindParam(4,$klas["docent_afk"]);
         $stmt->execute();
+
     } catch (Exception $e) {
         $_SESSION['message'] = "Er ging wat fout.";
         header('Location: '.$_SERVER['REQUEST_URI']);       
         exit;
     }
+    $_SESSION["message-success"] = "Klas is toegevoegd!";
 }
 
 function updateKlas($klas, $klas_id) {
@@ -81,13 +85,14 @@ function updateKlas($klas, $klas_id) {
     try {   
         $stmt = $db->prepare("
             UPDATE klas
-            SET klas = ?, examenjaar = ?, docent_afk = ?
+            SET klas = ?, examenjaar = ?,  niveau = ?, docent_afk = ?
             WHERE klas_id = ?
             ");
         $stmt->bindParam(1,$klas["klas"]);
         $stmt->bindParam(2,$klas["examenjaar"]);
-        $stmt->bindParam(3,$klas["docent_afk"]);
-        $stmt->bindParam(4,$klas_id);
+        $stmt->bindParam(3,$klas["niveau"]);
+        $stmt->bindParam(4,$klas["docent_afk"]);
+        $stmt->bindParam(5,$klas_id);
         $stmt->execute();
     } catch (Exception $e){
         $_SESSION['message'] = "Er ging wat fout.";
@@ -168,4 +173,24 @@ function deleteKlas($klas_id) {
 
     $db->commit();
     $_SESSION["message-success"] = "Klas verwijdert";
+}
+
+
+
+function getNiveauFromStudent($gebruiker_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {   
+        $stmt = $db->prepare("SELECT K.niveau FROM klas K JOIN leerling L on L.klas_id = K.klas_id  WHERE L.gebruiker_id = ?");
+        $stmt->bindParam(1, $gebruiker_id);
+        $stmt->execute();
+    } catch (Exception $e){
+        $_SESSION['message'] = "Er ging wat fout.";
+        header('Location: '.$_SERVER['REQUEST_URI']);
+        exit;
+    }
+    $results = $stmt->fetchall(PDO::FETCH_ASSOC);
+    foreach ($results as $key => $value) {
+        $a = $value['niveau'];
+    }
+    return $a;
 }

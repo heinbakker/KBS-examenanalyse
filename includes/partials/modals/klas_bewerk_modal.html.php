@@ -13,13 +13,24 @@
 						      <tr>
 						        <th>Klas</th>
 						        <th>Examenjaar</th>
+						        <th>Niveau</th>
 						        <th>Docent Afkorting</th>
 						      </tr>
 						    </thead>
 						    <tbody>					    	
 						    	<tr class="inputrow">
 						            <td><input type="text" class="form-control" name="klas" value="<?php echo $klas["klas"] ?>"></td>
-						            <td><input type="text" class="form-control" name="examenjaar" value="<?php echo $klas["examenjaar"] ?>"></td>
+						            <td><input type="number" class="form-control" name="examenjaar" value="<?php echo $klas["examenjaar"] ?>"></td>
+			
+						            <td>
+						            	<select name="niveau">
+						            		<option value="<?php echo $klas["niveau"] ?>"><?php echo $klas["niveau"] ?></option>
+										    <option value="havo">havo</option>
+										    <option value="vwo">vwo</option>
+										    <option value="vmbo tl">vmbo tl</option>
+										    <option value="vmbo kl">vmbo kl</option>
+										  </select>
+						            </td>
 						            <td><input type="text" class="form-control" name="docent_afk" value="<?php echo $klas["docent_afk"] ?>"></td>
 			            		</tr>
 							</tbody>

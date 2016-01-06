@@ -492,3 +492,5 @@ function viewTeacher(){
         exit;
     }
     }
+	
+	

@@ -126,7 +126,7 @@ checkIfAdminIsLoggedOn();
                                                     foreach ($categoriedata as $key => $value) {
                                                     	if ($value['categorieomschrijving'] == $k) {
                                                     		$categorie_id = $value['categorie_id'];
-                                                    		$e = $value['catagorieomschrijving_uitgebreid'];
+                                                    		$e = $value['categorieomschrijving_uitgebreid'];
                                                     	}
                                                     }
                                                     $categoriedata = getAllExamQuestionsWithCategorie($categorie_id);

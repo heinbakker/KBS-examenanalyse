@@ -2,8 +2,6 @@
 
 //model wil zeggen: alles wat betrekking heeft tot bepaalde informatie ophalen uit de database en wat de verbanden zijn tussen die gegevens.
 // Hier komen dus alle functies te staan die die informatie ophalen uit de database of juist wat in de database zetten/updaten.
-
-
 // checken of examen bestaat
 function checkIfExamExists($examenvak, $examenjaar, $tijdvak) {
     require(ROOT_PATH . "includes/database_connect.php");
@@ -231,7 +229,7 @@ function getAllExamResultsWithNterm($gebruiker_id) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
         $match = $db->prepare("
-		SELECT 
+		SELECT
 			E.examenvak,
 			E.examenjaar,
 			E.tijdvak,
@@ -248,8 +246,8 @@ function getAllExamResultsWithNterm($gebruiker_id) {
 			R.gebruiker_id = ?
 		GROUP BY EV.examen_id
 		ORDER BY R.timestamp
-		"); 
-		$match->bindParam(1, $gebruiker_id);
+		");
+        $match->bindParam(1, $gebruiker_id);
         $match->execute();
     } catch (Exception $e) {
         $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
@@ -300,7 +298,7 @@ function getExamQuestionResultsFromExamen($gebruiker_id, $examen_id) {
          JOIN SCORE S ON S.examenvraag_id = EV.examenvraag_id
 
         WHERE
-            S.gebruiker_id = ? 
+            S.gebruiker_id = ?
         AND E.examen_id = ?
         GROUP BY EV.examen_id , EV.categorie_id
         ORDER BY R.timestamp , EV.categorie_id;
@@ -321,13 +319,11 @@ function getExamQuestionResultsFromExamen($gebruiker_id, $examen_id) {
     return $newResult;
 }
 
-
-
 function getAllExamQuestionsWithCategorie($j) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
         $match = $db->prepare("SELECT E.examenvak, E.examenjaar, E.tijdvak, EV.examenvraag FROM examenvraag EV JOIN examen E on E.examen_id = EV.examen_id WHERE categorie_id = ? ORDER BY RAND() LIMIT 5
-"); 
+");
         $match->bindParam(1, $j);
         $match->execute();
     } catch (Exception $e) {
@@ -341,7 +337,7 @@ function getAllExamQuestionsWithCategorie($j) {
 function getAllCreatedExamsWithExamId($j) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
-        $match = $db->prepare("SELECT * FROM resultaat WHERE examen_id = ?"); 
+        $match = $db->prepare("SELECT * FROM resultaat WHERE examen_id = ?");
         $match->bindParam(1, $j);
         $match->execute();
     } catch (Exception $e) {
@@ -350,6 +346,284 @@ function getAllCreatedExamsWithExamId($j) {
     }
     $match = $match->fetchAll();
     return $match;
+}
+
+function getCategorie() {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $match = $db->prepare("
+            SELECT *
+            FROM categorie
+            ");
+        $match->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
+        exit;
+    }
+    $match = $match->fetchAll();
+    return $match;
+}
+
+function updateCategorie($categorie, $categorieomschrijving, $categorie_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            UPDATE categorie
+            SET categorieomschrijving = ?, categorieomschrijving_uitgebreid =?
+            WHERE categorie_id = ?
+            ");
+        $stmt->bindParam(1, $categorie);
+        $stmt->bindParam(2, $categorieomschrijving);
+        $stmt->bindParam(3, $categorie_id);
+        $stmt->execute();
+        $_SESSION["message-success"] = "Categorie geüpdatet!";
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Bewerken is mislukt.";
+        exit;
+    }
+}
+
+function addCategorie($categorie, $categorieomschrijving) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            INSERT INTO categorie
+            (categorieomschrijving, categorieomschrijving_uitgebreid)
+            VALUES (?, ?);
+            ");
+        $stmt->bindParam(1, $categorie);
+        $stmt->bindParam(2, $categorieomschrijving);
+        $stmt->execute();
+        $_SESSION["message-success"] = "Categorie toegevoegd!";
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Toevoegen mislukt";
+        exit;
+    }
+}
+
+function deleteCategorie($categorie_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            DELETE FROM categorie
+            WHERE categorie_id = ?;
+            ");
+        $stmt->bindParam(1, $categorie_id);
+        $stmt->execute();
+        $_SESSION["message-succes"] = "Categorie verwijdert!";
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Verwijderen mislukt";
+    }
+}
+
+function checkifCategoriehasQuestions($categorie_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT *
+            FROM examenvraag
+            WHERE categorie_id = ?;
+            ");
+        $stmt->bindParam(1, $categorie_id);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Controle mislukt";
+    }
+    $match = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($match == "") {
+        return true;
+    } else {
+        return false;
+    }
+}  
+
+/* onderstaande nog niet goed ??? */
+
+function getExamen($niveau) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT *
+            FROM examen
+            WHERE niveau = ?
+            Order by examen_id
+            ");
+        $stmt->bindParam(1, $niveau);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+    $results = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+    return $results;
+}
+
+function getExamenvragen($examen_id) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT *
+            FROM examenvraag
+            WHERE examen_id = ?
+            ORDER BY examenvraag ASC
+            ");
+        $stmt->bindParam(1, $examen_id);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+    $results = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+    return $results;
+}
+
+function insertScore($gebruiker, $examenvraagid, $vraagscore) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            INSERT INTO score (gebruiker_id,examenvraag_id,vraag_score)
+            VALUES (?,?,?)
+            ");
+        $stmt->bindParam(1, $gebruiker);
+        $stmt->bindParam(2, $examenvraagid);
+        $stmt->bindParam(3, $vraagscore);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+    $_SESSION['message-success'] = "Score is ingevoerd!";
+}
+
+function updateScore($gebruiker, $examenvraagid, $vraagscore) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            UPDATE score
+            SET vraag_score = ?
+            WHERE gebruiker_id = ? AND examenvraag_id = ?
+            ");
+        $stmt->bindParam(1, $vraagscore);
+        $stmt->bindParam(2, $gebruiker);
+        $stmt->bindParam(3, $examenvraagid);
+        $stmt->execute();
+        $_SESSION['message-success'] = "Score is bijgewerkt!";
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+}
+
+function getScore($gebruiker, $examenvraagid) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT gebruiker_id, examenvraag_id, vraag_score
+            FROM score
+            WHERE gebruiker_id = ? AND examenvraag_id = ?
+            ");
+        $stmt->bindParam(1, $gebruiker);
+        $stmt->bindParam(2, $examenvraagid);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+    $results = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+    return $results;
+}
+
+function getPunten($doorgestuurdewaarde) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT *
+            FROM examenvraag
+			Join Score ON examenvraag.examenvraag_id = Score.examenvraag_id
+            WHERE examen_id = ?
+            ORDER BY examenvraag ASC
+            ");
+        $stmt->bindParam(1, $doorgestuurdewaarde);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+    $results = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+    return $results;
+}
+
+function insertScoreTabelResultaat($gebruiker, $totaalscore, $examen_id) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            INSERT INTO resultaat (gebruiker_id,examen_id,examen_score)
+            VALUES (?,?,?)
+            ");
+        $stmt->bindParam(1, $gebruiker);
+        $stmt->bindParam(2, $examen_id);
+        $stmt->bindParam(3, $totaalscore);
+        $stmt->execute();
+        $_SESSION['message-success'] = "Score is bijgewerkt!";
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+}
+
+function updateScoreTabelResultaat($gebruiker, $totaalscore, $examen_id) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            UPDATE resultaat
+            SET examen_score = ?
+            WHERE gebruiker_id = ? AND examen_id = ?
+            ");
+        $stmt->bindParam(1, $totaalscore);
+        $stmt->bindParam(2, $gebruiker);
+        $stmt->bindParam(3, $examen_id);
+        $stmt->execute();
+        $_SESSION['message-success'] = "Score is bijgewerkt!";
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+}
+
+function checkIfExamResultExists($gebruiker, $examen_id) {
+
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT *
+            FROM resultaat
+            WHERE gebruiker_id = ? AND examen_id = ?
+            ");
+        $stmt->bindParam(1, $gebruiker);
+        $stmt->bindParam(2, $examen_id);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Er ging wat fout.";
+        exit;
+    }
+    $results = $stmt->fetchall(PDO::FETCH_ASSOC);
+    if (empty($results)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
