@@ -1,3 +1,9 @@
+
+ #foo > div.legend > table {
+      border: 2px red solid !important;
+    }
+
+
 button.btn.btn-default.btn-lg {
     margin: 10px;
   
@@ -12,7 +18,7 @@ button.btn.btn-default.btn-lg {
 }
 
 .progress-bar{
-	color: #000 !important;
+	color: #fff !important;
 }
 /*
 

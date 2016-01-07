@@ -24,13 +24,25 @@ checkIfAdminIsLoggedOn();
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="panel panel-default">
-							  <div class="panel-heading"><h3 class="panel-title">Panel heading without title</h3></div>
+							  <div class="panel-heading"><h3 class="panel-title">Voortgang weergegeven in een cijfer van de gemaakte examens.</h3></div>
 							  <div class="panel-body">
-							    Panel content
+							    <?php 
+									include(ROOT_PATH . "includes/partials/cijfersgemaakteexamens.html.php"); 
+								?>
 							  </div>
 							</div>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-6">
+							<div class="panel panel-default">
+							  <div class="panel-heading"><h3 class="panel-title">Welkom <?php $data = getUserData($_SESSION['gebruiker_id']);echo $data['voornaam']." ".$data['tussenvoegsel']." ".$data['achternaam'];?></h3></div>
+							  <div class="panel-body">
+								Beste leerling,<br><br>
+								Deze applicatie gaat jou helpen bij het halen van jou examen Nederlands! Door gebruik te maken deze applicatie zul je niet alleen doelgerichter leren, maar ook minder tijd kwijt zijn aan de voorbereiding van het examen. Nadat je in de klas alle onderdelen die op het examen Nederlands hebt behandeld ga je natuurlijk oefenexamens maken. Deze applicatie biedt jou de mogelijkheid om per examen per vraag de score in te voeren. De applicatie gaat voor jou een overzicht maken die per categorie aangeeft hoeveel jij nog moet oefenen. Ook krijg je adviezen welke examenvragen je nog een keer zou kunnen oefenen om beter te worden in een bepaalde categorie. We hopen dat je wat aan deze appliatie zal hebben. 
+								<br><br> Veel succes bij het halen van je examens!
+							  </div>
+							</div>
+						</div>
+						<div class="col-sm-6">
 							<div class="panel panel-default">
 							  <div class="panel-heading"><h3 class="panel-title">Categorieverdeling van alle examens</h3></div>
 							  <div class="panel-body">
@@ -40,22 +52,8 @@ checkIfAdminIsLoggedOn();
 							  </div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="panel panel-default">
-							  <div class="panel-heading"><h3 class="panel-title">Panel heading without title</h3></div>
-							  <div class="panel-body">
-							    Panel content
-							  </div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="panel panel-default">
-							  <div class="panel-heading"><h3 class="panel-title">Panel heading without title</h3></div>
-							  <div class="panel-body">
-							    Panel content
-							  </div>
-							</div>
-						</div>						
+						
+												
 					</div>
 				</div>
 			</div>

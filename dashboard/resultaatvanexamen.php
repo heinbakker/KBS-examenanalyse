@@ -50,6 +50,7 @@ checkIfAdminIsLoggedOn();
                                                 <?php
                                                 $test = checkCategorie();
 
+                                           
                                                 foreach ($test as $t) {
 
                                                     echo"<tr>";
@@ -62,8 +63,8 @@ checkIfAdminIsLoggedOn();
                                                             if ($value[$q] < 50) {
                                                                 ?>
                                                                 <div class="progress">
-                                                                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $value[$q]; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $value[$q]; ?>%">
-                                                                        <?php echo $value[$q] . "% score"; ?>
+                                                                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $value[$q];  ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $value[$q] + 1.5; ?>%">
+                                                                        <?php echo $value[$q] . "%"; ?>
                                                                     </div>
                                                                 </div>
                                                                 <?php
@@ -71,7 +72,7 @@ checkIfAdminIsLoggedOn();
                                                                 ?>
                                                                 <div class="progress">
                                                                     <div class="progress-bar progress-bar-warning  progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $value[$q]; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $value[$q]; ?>%">
-                                                                        <?php echo $value[$q] . "% score"; ?>
+                                                                        <?php echo $value[$q] . "%"; ?>
                                                                     </div>
                                                                 </div>
 
@@ -80,7 +81,7 @@ checkIfAdminIsLoggedOn();
                                                                 ?>
                                                                 <div class="progress">
                                                                     <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $value[$q]; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $value[$q]; ?>%">
-                                                                        <?php echo $value[$q] . "% score"; ?>
+                                                                        <?php echo $value[$q] . "%"; ?>
                                                                     </div>
                                                                 </div>
                                                                 <?php

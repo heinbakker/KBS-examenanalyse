@@ -14,7 +14,7 @@ $(function(aantalexamens) {
 	$examencijferresultaten = getAllExamResultsWithNterm($_SESSION['gebruiker_id']);
 	foreach ($examencijferresultaten as $resultaat){
 		$cijfer = $resultaat['examen_score']/$resultaat['maxscore'] * 9 + $resultaat['nterm'];
-		echo '["	'.$resultaat['examenjaar'].' Tijdvak '.$resultaat['tijdvak'].'",'.$cijfer."],";
+		echo '["	'.$resultaat['examenjaar'].' Tijdvak '.$resultaat['tijdvak']."<br>Cijfer: ".round($cijfer, 1).'",'.$cijfer."],";
 	}
 	?>
 	];
@@ -54,7 +54,7 @@ $(function(aantalexamens) {
 .examencijferresultaten-placeholder {
 	width: 100%;
 	height: 90%;
-	font-size: 10px;
+	font-size: 16px;
 	line-height: 1.0em;
 }
 

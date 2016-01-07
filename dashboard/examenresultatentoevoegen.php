@@ -85,7 +85,7 @@ if (isset($_POST['examen_id'])) {
 													echo"<tr>";
                                                     $score = $examengegevens['examen_id'];
                                                     $scorelijst = getExamenvragen($score);
-                                                    $punten = getPunten($score);
+                                                    $punten = getPunten($score, $_SESSION['gebruiker_id']);
                                                     ?><td><?php echo $examengegevens['examenvak']; ?></td><?php
                                                     ?><td><?php echo $examengegevens['examenjaar']; ?></td><?php
                                                     ?><td><?php echo $examengegevens['tijdvak']; ?></td><?php
@@ -132,8 +132,11 @@ if (isset($_POST['examen_id'])) {
                                                                 <form method="POST" action="">
                                                                     <?php
                                                                     $score = $examengegevens['examen_id'];
+
                                                                     $scorelijst = getExamenvragen($score);
-                                                                    $punten = getPunten($score);
+                                                                    
+                                                                    $punten = getPunten($score, $_SESSION['gebruiker_id']);
+                                                                   
                                                                     $counter = 0;
                                                                     foreach ($scorelijst as $data) {
                                                                         echo"<tr>";
@@ -157,7 +160,7 @@ if (isset($_POST['examen_id'])) {
                                                                                 for ($q = 0; $q <= $data["maxscore"]; $q++) {
                                                                                     ?>
                                                                                     <option value="<?php echo $q; ?>" <?php
-                                                                                    if (!empty($punten)) {
+                                                                                    if (!empty($punten && isset($punten[$counter]['vraag_score']))) {
                                                                                         if ($q == $punten[$counter]['vraag_score']) {
                                                                                             echo 'selected';
                                                                                         }

@@ -215,7 +215,7 @@ function selectExamQuestions($examen_id) {
 function getAllExamquestionCategories() {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
-        $match = $db->prepare("SELECT categorie_id, count(categorie_id) FROM examenvraag GROUP BY categorie_id");
+        $match = $db->prepare("SELECT categorie_id, count(categorie_id) FROM examenvraag GROUP BY categorie_id ORDER BY 2 DESC");
         $match->execute();
     } catch (Exception $e) {
         $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
@@ -260,7 +260,7 @@ function getAllExamResultsWithNterm($gebruiker_id) {
 function getExamQuestionResults($gebruiker_id) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
-        $results = $db->prepare(" SELECT E.examenvak, E.examenjaar,E.tijdvak, ROUND(100 * SUM(S.vraag_score) / SUM(EV.maxscore),2), C.categorieomschrijving, E.examen_id
+        $results = $db->prepare(" SELECT E.examenvak, E.examenjaar,E.tijdvak, ROUND(100 * SUM(S.vraag_score) / SUM(EV.maxscore),0), C.categorieomschrijving, E.examen_id
         FROM categorie C
         JOIN examenvraag EV ON EV.categorie_id = C.categorie_id
          JOIN examen E ON EV.examen_id = E.examen_id
@@ -290,7 +290,7 @@ function getExamQuestionResults($gebruiker_id) {
 function getExamQuestionResultsFromExamen($gebruiker_id, $examen_id) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
-        $results = $db->prepare(" SELECT E.examenvak, E.examenjaar,E.tijdvak, ROUND(100 * SUM(S.vraag_score) / SUM(EV.maxscore),2), C.categorieomschrijving, E.examen_id
+        $results = $db->prepare(" SELECT E.examenvak, E.examenjaar,E.tijdvak, ROUND(100 * SUM(S.vraag_score) / SUM(EV.maxscore),0), C.categorieomschrijving, E.examen_id
         FROM categorie C
         JOIN examenvraag EV ON EV.categorie_id = C.categorie_id
          JOIN examen E ON EV.examen_id = E.examen_id
@@ -437,7 +437,7 @@ function checkifCategoriehasQuestions($categorie_id) {
     }
 }  
 
-/* onderstaande nog niet goed ??? */
+
 
 function getExamen($niveau) {
 
@@ -541,7 +541,7 @@ function getScore($gebruiker, $examenvraagid) {
     return $results;
 }
 
-function getPunten($doorgestuurdewaarde) {
+function getPunten($examen_id, $gebruiker_id) {
 
     require(ROOT_PATH . "includes/database_connect.php");
     try {
@@ -550,9 +550,11 @@ function getPunten($doorgestuurdewaarde) {
             FROM examenvraag
 			Join Score ON examenvraag.examenvraag_id = Score.examenvraag_id
             WHERE examen_id = ?
+            AND Score.gebruiker_id = ?
             ORDER BY examenvraag ASC
             ");
-        $stmt->bindParam(1, $doorgestuurdewaarde);
+        $stmt->bindParam(1, $examen_id);
+        $stmt->bindParam(2, $gebruiker_id);
         $stmt->execute();
     } catch (Exception $e) {
         $_SESSION['message'] = "Er ging wat fout.";
