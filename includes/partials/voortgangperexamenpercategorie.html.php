@@ -1,5 +1,6 @@
 <?php
 $data = getExamQuestionResults($_SESSION['gebruiker_id']);
+
 if(empty($examencijferresultaten)){
     echo"Er zijn nog geen resultaten ingevoerd, klik <a class='button' href='examenresultatentoevoegen.php'>hier</a> om resultaten toe te voegen.";
 } else {
@@ -24,7 +25,7 @@ if(empty($examencijferresultaten)){
             foreach ($data as $key => $value) {
                 if (array_key_exists($q, $value)) {
 					if(isset($voorgaandewaarde)){
-					if($voorgaandewaarde >  $value[$q]){
+					if($voorgaandewaarde >  $value[$q] OR $value[$q] < 25){
 						echo "<td class='danger'>";
 						echo $value[$q] . "%";
 						echo "</td>";
@@ -34,9 +35,15 @@ if(empty($examencijferresultaten)){
 						echo "</td>";
 					}
 					}else{
-						echo "<td>";
+                        if($value[$q] <= 50){
+						echo "<td class='danger'>";
 						echo $value[$q] . "%";
 						echo "</td>";
+                        } else {
+                            echo "<td class='success'>";
+                            echo $value[$q] . "%";
+                            echo "</td>";
+                        }
 					}
 					$voorgaandewaarde = $value[$q];
                 } else {

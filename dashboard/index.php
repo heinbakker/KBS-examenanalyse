@@ -32,8 +32,8 @@ checkIfAdminIsLoggedOn();
 							  </div>
 							</div>
 						</div>
-						<div class="col-sm-6">
-							<div class="panel panel-default">
+						<div class="col-sm-4" >
+							<div class="panel panel-default" style="min-height:526px;">
 							  <div class="panel-heading"><h3 class="panel-title">Welkom <?php $data = getUserData($_SESSION['gebruiker_id']);echo $data['voornaam']." ".$data['tussenvoegsel']." ".$data['achternaam'];?></h3></div>
 							  <div class="panel-body">
 								Beste leerling,<br><br>
@@ -42,9 +42,9 @@ checkIfAdminIsLoggedOn();
 							  </div>
 							</div>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-8" >
 							<div class="panel panel-default">
-							  <div class="panel-heading"><h3 class="panel-title">Categorieverdeling van alle examens</h3></div>
+							  <div class="panel-heading"><h3 class="panel-title">Categorieverdeling in alle examens</h3></div>
 							  <div class="panel-body">
 							    <?php 
 									include(ROOT_PATH . "includes/partials/categorieverdeling.html.php"); 

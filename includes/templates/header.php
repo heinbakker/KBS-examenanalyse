@@ -2,7 +2,7 @@
 
 $data = getUserData($_SESSION['gebruiker_id']);
 $gebruikersnaam = $data['voornaam']." ".$data['tussenvoegsel']." ".$data['achternaam'];
-
+include(ROOT_PATH . "includes/partials/modals/about_modal.html.php"); 
 ?>
 
 <!DOCTYPE html>

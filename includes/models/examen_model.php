@@ -269,10 +269,13 @@ function getExamQuestionResults($gebruiker_id) {
 
         WHERE
             S.gebruiker_id = ?
-        GROUP BY EV.examen_id , EV.categorie_id
-        ORDER BY R.timestamp , EV.categorie_id;
+		AND
+            R.gebruiker_id = ?
+        GROUP BY EV.examen_id , EV.categorie_id 
+        ORDER BY R.timestamp  , EV.categorie_id
         ");
         $results->bindParam(1, $gebruiker_id);
+		$results->bindParam(2, $gebruiker_id);
         $results->execute();
     } catch (Exception $e) {
         $_SESSION['message'] = "Data could not be retrieved from the database.";

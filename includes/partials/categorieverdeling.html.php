@@ -54,7 +54,7 @@ foreach ($gegevens as $gegeven) {
 <style>
     .categorieverdeling-container {
         width: 100%;
-        height: 500px;
+        height: 450px;
     }
     .categorieverdeling-placeholder {
         width: 100%;

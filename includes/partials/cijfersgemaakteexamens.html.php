@@ -1,5 +1,6 @@
 <?php 
 $examencijferresultaten = getAllExamResultsWithNterm($_SESSION['gebruiker_id']);
+
 if(empty($examencijferresultaten)){
 	echo"Er zijn nog geen resultaten ingevoerd, klik <a class='button' href='/dashboard/examenresultatentoevoegen.php'>hier</a> om resultaten toe te voegen.";
 } else {
@@ -13,7 +14,24 @@ $(function(aantalexamens) {
 	<?php
 	$examencijferresultaten = getAllExamResultsWithNterm($_SESSION['gebruiker_id']);
 	foreach ($examencijferresultaten as $resultaat){
-		$cijfer = $resultaat['examen_score']/$resultaat['maxscore'] * 9 + $resultaat['nterm'];
+		//algoritme om cijfer uit te rekenen van cito zie http://www.cito.nl/~/media/cito_nl/files/voortgezet%20onderwijs/omzettingstabel.ashx?la=nl
+		// en http://www.cito.nl/~/media/cito_nl/files/voortgezet%20onderwijs/cito_afrondingsalgoritme.ashx?la=nl
+			$hoofd =  9.0 * ($resultaat['examen_score']/$resultaat['maxscore']) + $resultaat['nterm'];
+			$lo = 1+$resultaat['examen_score']*(9/$resultaat['maxscore'])*2;
+			$lb = 10-($resultaat['maxscore']-$resultaat['examen_score'])*(9/$resultaat['maxscore'])*0.5;
+			$ro = 1+$resultaat['examen_score']*(9/$resultaat['maxscore'])*0.5;
+			$rb = 10-($resultaat['maxscore']-$resultaat['examen_score'])*(9/$resultaat['maxscore'])*2;
+			if(isset($resultaat['examen_score'])){
+				if($resultaat['nterm'] > 1){
+					$cijfer = min($hoofd, $lo, $lb);
+				} else{
+					if($resultaat['nterm'] < 1){
+						$cijfer = max($hoofd, $ro, $rb);
+					}else{
+						$cijfer = $hoofd;
+					}
+				}
+			}
 		echo '["	'.$resultaat['examenjaar'].' Tijdvak '.$resultaat['tijdvak']."<br>Cijfer: ".round($cijfer, 1).'",'.$cijfer."],";
 	}
 	?>
