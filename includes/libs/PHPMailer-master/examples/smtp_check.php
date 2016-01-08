@@ -18,7 +18,7 @@ $smtp->do_debug = SMTP::DEBUG_CONNECTION;
 
 try {
 //Connect to an SMTP server
-    if ($smtp->connect('mail.example.com', 25)) {
+    if ($smtp->connect('lima.pegasushosting.nl', 995)) {
         //Say hello
         if ($smtp->hello('localhost')) { //Put your host name in here
             //Authenticate

@@ -16,7 +16,7 @@ $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 
 $mail->From = 'kbswindesheim@gmail.com';
-$mail->FromName = 'Sjaak van Lenten';
+$mail->FromName = 'Piet Mourits';
 $mail->addReplyTo('kbswindesheim@gmail.com', 'Reply Address');
 
 $mail->isHTML(true); 

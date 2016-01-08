@@ -13,12 +13,14 @@ function generate_random_password() {
 
 
 function createTempPasswordMail($gegevens) {
+    require('\..\includes\templates\emailheader.php');
+    require('\..\includes\templates\emailfooter.php');
         $mail_content = array(
             "address" => $gegevens["emailadres"],
             "name"    => "",
             "subject" => "Registratie",
-            "body"    => "Beste " . $gegevens["voornaam"] . " " . (empty($gegevens["tussenvoegsel"]) ? $gegevens["tussenvoegsel"]: $gegevens["tussenvoegsel"] . ' ') . $gegevens["achternaam"] . ",<br>" . 
-            "<br>Hierbij verzend ik het tijdelijke wachtwoord: " . $gegevens["generated_password"] . "<br>Log in op de site om een wachtwoord in te stellen",
+            "body"    => $header."Beste " . $gegevens["voornaam"] . " " . (empty($gegevens["tussenvoegsel"]) ? $gegevens["tussenvoegsel"]: $gegevens["tussenvoegsel"] . ' ') . $gegevens["achternaam"] . ",<br>" . 
+            "<br>Er is een account voor jou aangemaakt om in te loggen op examenanalsye.jfsgsites.nl. Hierbij je tijdelijke wachtwoord: " . $gegevens["generated_password"] . "<br>Log in op de site om een wachtwoord in te stellen".$footer,
             "altbody" => "wachtwoordregistratie",
         );
         return $mail_content;
@@ -42,16 +44,19 @@ function sendMail($mail_content) {
 
 //body staat nu nog localhost voor de base_url voor lokaal gebruik
 function passwordResetMail($user_data,$url_code) {
+    require('\includes\templates\emailheader.php');
+    require('\includes\templates\emailfooter.php');
         $mail_content = array(
             "address" => $user_data['emailadres'],
             "name"    => "",
             "subject" => "Wachtwoord wijzigen",
-            "body"    => 'Beste ' . $user_data['voornaam'] . ' ' 
+            "body"    => $header.'Beste ' . $user_data['voornaam'] . ' ' 
             . (empty($user_data['tussenvoegsel']) ? $user_data['tussenvoegsel']: $user_data['tussenvoegsel'] . ' ') 
             . $user_data['achternaam'] . ',<br>' 
             . '<br>Hierbij verzend ik de link om uw wachtwoord opnieuw in te stellen:<br> 
-            <a href="http://localhost' . BASE_URL . 'password/' . $url_code . '">localhost' . BASE_URL . 'password/' . $url_code . '</a>',
+            <a href="http://localhost' . BASE_URL . 'password/' . $url_code . '">localhost' . BASE_URL . 'password/' . $url_code . '</a>'.$footer,
             "altbody" => "wachtwoordregistratie",
         );
         return $mail_content;
     }
+
