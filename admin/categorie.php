@@ -1,10 +1,8 @@
 <?php
 require_once("/../includes/init.php");
-
 $pagename = "categorieën";
 checkSession();
 checkIfAdmin();
-
 //CATEGORIE VERWIJDEREN
 if (isset($_POST['deletecategorie'])) {
     $verwijder = $_POST['verwijdercategorie'];
@@ -15,8 +13,6 @@ if (isset($_POST['deletecategorie'])) {
 		$_SESSION['message'] = "Er zijn nog vragen die aan deze categorie zijn toegewezen, verwijder deze eerst voordat u de categorie kunt verwijderen";
 	}
 }
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//CATEGORIE TOEVOEGEN
 	if (isset($_POST['submit_categorie'])){
@@ -44,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 }
-
 ?>
 <!DOCTYPE html>
 	<?php include(ROOT_PATH . "includes/templates/header.php");?>
@@ -66,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<div class="col-sm-12">
 							<div class="panel panel-default">
 								<div class="table-responsive">
-									<table class="table table-bordered table-striped table-hover">
+									<table class="table table-bordered table-hover">
 										<tr>
 											<th>Categorienummer</th>
 											<th>Categorie</th>
@@ -74,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											<th></th>
 										</tr>
 										<?php
-											$categorieën = getcategorie();
+											$categorieën = getCategorie();
 											$temporarilycategorieid = 0;
 											foreach ($categorieën as $categorie){
 												$temporarilycategorieid = $temporarilycategorieid + 1;

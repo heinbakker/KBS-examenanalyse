@@ -363,10 +363,9 @@ function getCategorie() {
         $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
         exit;
     }
-    $match = $match->fetchAll();
+    $match = $match->fetchAll(PDO::FETCH_ASSOC);
     return $match;
 }
-
 function updateCategorie($categorie, $categorieomschrijving, $categorie_id) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
@@ -385,7 +384,6 @@ function updateCategorie($categorie, $categorieomschrijving, $categorie_id) {
         exit;
     }
 }
-
 function addCategorie($categorie, $categorieomschrijving) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
@@ -403,7 +401,6 @@ function addCategorie($categorie, $categorieomschrijving) {
         exit;
     }
 }
-
 function deleteCategorie($categorie_id) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
@@ -418,7 +415,6 @@ function deleteCategorie($categorie_id) {
         $_SESSION['message'] = "Verwijderen mislukt";
     }
 }
-
 function checkifCategoriehasQuestions($categorie_id) {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
@@ -438,8 +434,45 @@ function checkifCategoriehasQuestions($categorie_id) {
     } else {
         return false;
     }
-}  
-
+}
+function getScoreKlaseachCategorie($klas_id, $categorie_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT ROUND(100 * SUM(vraag_score) / SUM(maxscore)) AS 'result'
+            FROM leerling l
+            JOIN score s ON l.gebruiker_id = s.gebruiker_id
+            JOIN examenvraag e ON s.examenvraag_id = e.examenvraag_id
+            WHERE l.klas_id = ? AND categorie_id = ?
+            ");
+        $stmt->bindParam(1, $klas_id);
+        $stmt->bindParam(2, $categorie_id);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Score ophalen mislukt";
+    }
+    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $results['result'];
+}
+function getScoreStudenteachCategorie ($gebruiker_id, $categorie_id){
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT ROUND(100 * SUM(vraag_score) / SUM(maxscore)) AS 'result'
+            FROM leerling l
+            JOIN score s ON l.gebruiker_id = s.gebruiker_id
+            JOIN examenvraag e ON s.examenvraag_id = e.examenvraag_id
+            WHERE l.gebruiker_id = ? AND categorie_id = ?
+            ");
+        $stmt->bindParam(1, $gebruiker_id);
+        $stmt->bindParam(2, $categorie_id);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Score ophalen mislukt";
+    }
+    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $results['result'];
+}
 
 
 function getExamen($niveau) {

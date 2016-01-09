@@ -194,3 +194,65 @@ function getNiveauFromStudent($gebruiker_id) {
     }
     return $a;
 }
+
+function getmultipleKlasfromoneTeacher($gebruiker_id){
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $docentafk = $db->prepare("
+            SELECT docent_afk
+            FROM docent
+            WHERE gebruiker_id = ?
+            ");
+        $docentafk->bindParam(1,$gebruiker_id);
+        $docentafk->execute();
+        $docentafk = $docentafk->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e){
+        $_SESSION['message'] = "Docent afkorting ophalen mislukt";
+    }
+    try {
+        $stmt = $db->prepare("
+            SELECT *
+            FROM klas
+            WHERE docent_afk = ?
+            ");
+        $stmt->bindParam(1,$docentafk['docent_afk']);
+        $stmt->execute();
+    } catch (Exception $e){
+        $_SESSION['message'] = "Klassen ophalen mislukt";
+    }
+    $match = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $match;
+}
+function getInfooneKlas($klas_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+            SELECT *
+            FROM klas
+            WHERE klas_id = ?
+            ");
+        $stmt->bindParam(1, $klas_id);
+        $stmt->execute();
+    } catch (Exception $e){
+        $_SESSION['message'] = "Informatie ophalen mislukt";
+    }
+    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $results;
+}
+function getStudentNamesfromoneKlas ($klas_id) {
+    require(ROOT_PATH . "includes/database_connect.php");
+    try {
+        $stmt = $db->prepare("
+                SELECT g.gebruiker_id, g.voornaam, g.tussenvoegsel, g.achternaam
+                FROM gebruiker g
+                JOIN leerling l ON g.gebruiker_id = l.gebruiker_id
+                WHERE l.klas_id = ?
+            ");
+        $stmt->bindParam(1, $klas_id);
+        $stmt->execute();
+    } catch (Exception $e) {
+        $_SESSION['message'] = "Informatie ophalen mislukt";
+    }
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}

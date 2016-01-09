@@ -1,4 +1,4 @@
-	<!--CATEGORIE TOEVOEGEN-->
+<!--CATEGORIE TOEVOEGEN-->
 	<div class="modal fade" id="categorietoevoegen">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
