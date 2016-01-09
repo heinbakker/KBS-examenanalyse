@@ -1,10 +1,10 @@
 <div class="sidebar-wrapper">
 	<ul class="sidebar-nav list-unstyled">
 		<li>
-			<a class="<?php if ($pagename == "dashboard"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/">Dashboard</a>
+			<a class="<?php if ($pagename == "dashboard"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>dashboard/">Dashboard</a>
 		</li>
 		<li>
-			<a class="<?php if ($pagename == "resultaten"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>admin/resultaten.php">Resultaten</a>
+			<a class="<?php if ($pagename == "resultaten"){echo "active-nav";}?>" href="<?php echo BASE_URL; ?>dashboard/resultatenklassen.php">Resultaten</a>
 		</li>
 		
 	</ul>

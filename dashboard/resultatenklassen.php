@@ -2,7 +2,7 @@
 require_once("/../includes/init.php");
 $pagename = "resultaten";
 checkSession();
-checkIfAdmin();
+checkIfAdminIsLoggedOn();
 $gebruiker_id = $_SESSION['gebruiker_id'];
 $klassen = getmultipleKlasfromoneTeacher($gebruiker_id);
 $aantalklassen = count($klassen);
@@ -14,7 +14,14 @@ $allecategorieen = getCategorie();
 <!DOCTYPE html>
 	<?php include(ROOT_PATH . "includes/templates/header.php");?>
 		<div class="wrapper">
-			<?php include(ROOT_PATH . "includes/templates/sidebar-admin.php"); ?>
+			<?php 
+			//als docent ingelogd is sidebar-docent anders sidebar-leerling
+			if(checkRole($_SESSION['gebruiker_id']) == 2){
+				include(ROOT_PATH . "includes/templates/sidebar-docent.php"); 
+			}else{
+				include(ROOT_PATH . "includes/templates/sidebar-leerling.php"); 
+			}
+			?>
 			<div class="page-wrapper">
 				<div class="container-fluid">
 					<div class="row">
@@ -26,9 +33,10 @@ $allecategorieen = getCategorie();
 								<div class="panel-body">
 									<?php
 									if(empty($klassen)){
-										echo"Het lijkt er op dat er nog geen klassen aan u zijn toegewezen. Er kunnen dus ook geen resultaten getoond worden. U kunt een klas aan uzelf toewijzen op de klassen pagina.";
+										echo"Het lijkt er op dat er nog geen klassen aan u zijn toegewezen. Er kunnen dus ook geen resultaten getoond worden. Vraag de admin of hij een klas kan toewijzen.";
 									}else{
 										echo'Hieronder ziet u de resultaten van uw klassen. Als er een " - " staat betekent dat dat deze categorie niet voorkomt in de opgeslagen resultaten.';
+
 									}
 									?>
 								</div>
@@ -77,7 +85,7 @@ $allecategorieen = getCategorie();
 										</table>
 									</div>
 									<div class="panel-footer">
-										<form action="<?php echo BASE_URL; ?>admin/resultaatklas.php" method="POST">
+										<form action="<?php echo BASE_URL; ?>dashboard/resultaatklas.php" method="POST">
 											<input type="hidden" name="klasid" value="<?php echo $klas['klas_id'];?>">
 											<input type="submit" name="moreinfo" value="Meer informatie" class="btn btn-default">
 										</form>
