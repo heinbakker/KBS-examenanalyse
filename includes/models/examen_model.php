@@ -129,7 +129,7 @@ function getAllExams() {
     require(ROOT_PATH . "includes/database_connect.php");
     try {
 
-        $match = $db->prepare("SELECT * FROM examen");
+        $match = $db->prepare("SELECT * FROM examen ORDER BY examenjaar, tijdvak, niveau");
         $match->execute();
     } catch (Exception $e) {
         $_SESSION['message'] = "Geen gegevens uit de database ontvangen.";
@@ -284,8 +284,8 @@ function getExamQuestionResults($gebruiker_id) {
     $results = $results->fetchAll();
     $newResult = [];
     foreach ($results as $row) {
-        $newResult[$row['examenvak'] . " " . $row['examenjaar'] . " tijdvak " . $row['tijdvak']][$row[4]] = $row[3];
-        $newResult[$row['examenvak'] . " " . $row['examenjaar'] . " tijdvak " . $row['tijdvak']]['examen_id'] = $row[5];
+        $newResult[/*$row['examenvak'] . " " . */$row['examenjaar'] . " tijdvak " . $row['tijdvak']][$row[4]] = $row[3];
+        $newResult[/*$row['examenvak'] . " " . */$row['examenjaar'] . " tijdvak " . $row['tijdvak']]['examen_id'] = $row[5];
     }
     return $newResult;
 }
@@ -450,7 +450,7 @@ function getExamen($niveau) {
             SELECT *
             FROM examen
             WHERE niveau = ?
-            Order by examen_id
+            Order by examenjaar, tijdvak
             ");
         $stmt->bindParam(1, $niveau);
         $stmt->execute();
@@ -630,5 +630,7 @@ function checkIfExamResultExists($gebruiker, $examen_id) {
         return false;
     }
 }
+
+
 
 

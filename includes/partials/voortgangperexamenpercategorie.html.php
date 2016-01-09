@@ -47,7 +47,7 @@ if(empty($examencijferresultaten)){
 					}
 					$voorgaandewaarde = $value[$q];
                 } else {
-                    echo"<td>-</td>";
+                    echo"<td class='active'></td>";
                 }
             }
 

@@ -45,6 +45,7 @@ $(function(aantalexamens) {
 				lineWidth: 0,
 				fillColor: "rgba(27,188,155, 0.8)"
 			}
+			//lines: { show: true, fill: true, },points: { show: true }
 
 		},
 		xaxis: {
